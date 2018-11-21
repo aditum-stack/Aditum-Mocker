@@ -10,10 +10,14 @@ import org.springframework.stereotype.Service;
  * 设备访问线程
  */
 @Service
-public class DeviceThread extends Thread{
+public class DeviceThread extends Thread {
 
     private Logger logger = LoggerFactory.getLogger(DeviceThread.class);
     private Device device;
+
+    public void setDevice(Device device) {
+        this.device = device;
+    }
 
     @Async
     public void visite() {

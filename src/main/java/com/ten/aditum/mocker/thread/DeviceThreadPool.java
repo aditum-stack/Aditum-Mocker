@@ -22,29 +22,52 @@ public class DeviceThreadPool {
      */
     private static final long TIME_OUT_MS = 1000 * 60 * 60 * 6;
 
+    /* --------------------------------------------------------------------- */
+
+    /**
+     * 初始用户数量
+     */
+    private Integer personCount = 16;
+
+    public void setPersonCount(Integer personCount) {
+        this.personCount = personCount;
+    }
+
     /**
      * 用户访问时间间隔 {@literal <PersonnelId, LastAccessTime>}
      */
-    private ConcurrentHashMap<String, Long> personAccessInterval = new ConcurrentHashMap<>();
+    private ConcurrentHashMap<String, Long> personAccessInterval = new ConcurrentHashMap<>(personCount * 2);
     /**
      * 用户访问进出顺序 {@literal <PersonnelId, LastAccessOrder>} true:in false:out
      */
-    private ConcurrentHashMap<String, Boolean> personAccessOrder = new ConcurrentHashMap<>( );
+    private ConcurrentHashMap<String, Boolean> personAccessOrder = new ConcurrentHashMap<>(personCount * 2);
+
+    /* --------------------------------------------------------------------- */
 
     /**
      * 用户集合
      */
     private List<Person> personList;
     /**
-     * 设备集合
-     */
-    private List<Device> deviceList;
-
-
-    /**
-     * 线程池集合
+     * 设备线程集合
      */
     private List<DeviceThread> deviceThreads;
+
+    /**
+     * 设置用户集合
+     */
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
+    }
+
+    /**
+     * 设置设备线程集合
+     */
+    public void setDeviceThreads(List<DeviceThread> deviceThreads) {
+        this.deviceThreads = deviceThreads;
+    }
+
+    /* --------------------------------------------------------------------- */
 
     /**
      * 启动线程池
