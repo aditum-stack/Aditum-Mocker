@@ -5,9 +5,9 @@
 .idea/modules.xml
 .idea/workspace.xml
 log/
-src/main/java/com/ten/aditum/mocker/entity/Community.sql
-src/main/java/com/ten/aditum/mocker/entity/Device.sql
-src/main/java/com/ten/aditum/mocker/entity/Person.sql
-src/main/java/com/ten/aditum/mocker/entity/Record.sql
+src/main/resources/sql/Community.sql
+src/main/resources/sql/Device.sql
+src/main/resources/sql/Person.sql
+src/main/resources/sql/Record.sql
 src/test/
 target/
