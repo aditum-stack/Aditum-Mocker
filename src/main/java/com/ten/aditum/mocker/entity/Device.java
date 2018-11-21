@@ -69,6 +69,61 @@ public class Device {
                 '}';
     }
 
+    public Device id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Device imei(String imei) {
+        this.imei = imei;
+        return this;
+    }
+
+    public Device alias(String alias) {
+        this.alias = alias;
+        return this;
+    }
+
+    public Device communityId(String communityId) {
+        this.communityId = communityId;
+        return this;
+    }
+
+    public Device deviceStatus(Integer deviceStatus) {
+        this.deviceStatus = deviceStatus;
+        return this;
+    }
+
+    public Device activateTime(String activateTime) {
+        this.activateTime = activateTime;
+        return this;
+    }
+
+    public Device lastOnlineTime(String lastOnlineTime) {
+        this.lastOnlineTime = lastOnlineTime;
+        return this;
+    }
+
+    public Device lastOfflineTime(String lastOfflineTime) {
+        this.lastOfflineTime = lastOfflineTime;
+        return this;
+    }
+
+    public Device createTime(String createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    public Device updateTime(String updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+
+    public Device isDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+        return this;
+    }
+
     public Integer getId() {
         return id;
     }

@@ -4,3 +4,10 @@
 .idea/misc.xml
 .idea/modules.xml
 .idea/workspace.xml
+log/
+src/main/java/com/ten/aditum/mocker/entity/Community.sql
+src/main/java/com/ten/aditum/mocker/entity/Device.sql
+src/main/java/com/ten/aditum/mocker/entity/Person.sql
+src/main/java/com/ten/aditum/mocker/entity/Record.sql
+src/test/
+target/

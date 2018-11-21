@@ -59,6 +59,51 @@ public class Person {
                 '}';
     }
 
+    public Person id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Person personnelId(String personnelId) {
+        this.personnelId = personnelId;
+        return this;
+    }
+
+    public Person personnelName(String personnelName) {
+        this.personnelName = personnelName;
+        return this;
+    }
+
+    public Person communityId(String communityId) {
+        this.communityId = communityId;
+        return this;
+    }
+
+    public Person personnelAddress(String personnelAddress) {
+        this.personnelAddress = personnelAddress;
+        return this;
+    }
+
+    public Person personnelPhone(String personnelPhone) {
+        this.personnelPhone = personnelPhone;
+        return this;
+    }
+
+    public Person createTime(String createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    public Person updateTime(String updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+
+    public Person isDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+        return this;
+    }
+
     public Integer getId() {
         return id;
     }

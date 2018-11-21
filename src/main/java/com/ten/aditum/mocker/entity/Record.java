@@ -44,6 +44,36 @@ public class Record {
                 '}';
     }
 
+    public Record id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Record imei(String imei) {
+        this.imei = imei;
+        return this;
+    }
+
+    public Record personnelId(String personnelId) {
+        this.personnelId = personnelId;
+        return this;
+    }
+
+    public Record visiteTime(String visiteTime) {
+        this.visiteTime = visiteTime;
+        return this;
+    }
+
+    public Record visiteStatus(Integer visiteStatus) {
+        this.visiteStatus = visiteStatus;
+        return this;
+    }
+
+    public Record isDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+        return this;
+    }
+
     public Integer getId() {
         return id;
     }

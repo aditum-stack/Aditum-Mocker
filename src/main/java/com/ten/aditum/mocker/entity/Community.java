@@ -64,6 +64,56 @@ public class Community {
                 '}';
     }
 
+    public Community id(Integer id) {
+        this.id = id;
+        return this;
+    }
+
+    public Community communityId(String communityId) {
+        this.communityId = communityId;
+        return this;
+    }
+
+    public Community communityName(String communityName) {
+        this.communityName = communityName;
+        return this;
+    }
+
+    public Community communityCity(String communityCity) {
+        this.communityCity = communityCity;
+        return this;
+    }
+
+    public Community communityAddress(String communityAddress) {
+        this.communityAddress = communityAddress;
+        return this;
+    }
+
+    public Community deviceCount(Integer deviceCount) {
+        this.deviceCount = deviceCount;
+        return this;
+    }
+
+    public Community deviceOnlineCount(Integer deviceOnlineCount) {
+        this.deviceOnlineCount = deviceOnlineCount;
+        return this;
+    }
+
+    public Community createTime(String createTime) {
+        this.createTime = createTime;
+        return this;
+    }
+
+    public Community updateTime(String updateTime) {
+        this.updateTime = updateTime;
+        return this;
+    }
+
+    public Community isDeleted(Integer isDeleted) {
+        this.isDeleted = isDeleted;
+        return this;
+    }
+
     public Integer getId() {
         return id;
     }
