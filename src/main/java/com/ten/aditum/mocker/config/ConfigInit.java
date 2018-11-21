@@ -32,7 +32,7 @@ public class ConfigInit {
 //        return this.url;
 //    }
 
-    public void run(){
+    public void run() {
         rest();
         init();
     }
@@ -42,8 +42,7 @@ public class ConfigInit {
     private String getPersonList = "http://localhost:8080/person";
     private String getDeviceList = "http://localhost:8080/device";
 
-    @Autowired
-    private DeviceThreadPool deviceThreadPool;
+    private DeviceThreadPool deviceThreadPool = DeviceThreadPool.INSTANCE;
 
     private List<Person> personList;
     private List<Device> deviceList;

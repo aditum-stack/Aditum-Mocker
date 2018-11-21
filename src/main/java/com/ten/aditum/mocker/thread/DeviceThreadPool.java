@@ -1,8 +1,6 @@
 package com.ten.aditum.mocker.thread;
 
-import com.ten.aditum.mocker.entity.Device;
 import com.ten.aditum.mocker.entity.Person;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -13,6 +11,8 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 @Component
 public class DeviceThreadPool {
+    public static final DeviceThreadPool INSTANCE = new DeviceThreadPool();
+
     /**
      * 随机失败概率 不进行任何模拟访问操作
      */
