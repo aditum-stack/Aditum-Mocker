@@ -1,12 +1,17 @@
 spring:
   application:
-    name: mocker
+    name: aditum-mocker
+  profiles:
+    active: default
   cloud:
     config:
+      enabled: true
       name: mocker   # git服务器上配置文件名称，无后缀
       profile: dev
       label: master
       uri: http://localhost:10002/   # config server端地址
+
+
 
 #      注意: bootstrap.yml文件加载优先级是最高的，这个文件中的配置将会覆盖application.yml中的配置，
 #      所以用bootstrap.yml来加载服务端配置，application.yml这个文件可以用来配置私有的配置。

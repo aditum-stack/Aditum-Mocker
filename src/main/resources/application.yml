@@ -1,2 +1,11 @@
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://localhost:10001/eureka/
+
 server:
-    port: 9001
+  port: 9001
