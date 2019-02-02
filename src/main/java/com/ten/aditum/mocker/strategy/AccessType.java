@@ -16,6 +16,9 @@ public enum AccessType {
         this.desc = desc;
     }
 
+    public int num() {
+        return this.value;
+    }
 
     @Override
     public String toString() {

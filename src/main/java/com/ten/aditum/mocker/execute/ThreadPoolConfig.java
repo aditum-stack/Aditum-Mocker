@@ -1,4 +1,4 @@
-package com.ten.aditum.mocker.thread;
+package com.ten.aditum.mocker.execute;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -10,7 +10,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
-@ComponentScan("com.ten.aditum.mocker.thread")
+@ComponentScan("com.ten.aditum.mocker.execute")
 @EnableAsync
 public class ThreadPoolConfig {
     /**
