@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Aditum-Mocker" />
+        <module name="mocker" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="Aditum-Mocker" target="1.8" />
+      <module name="mocker" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
