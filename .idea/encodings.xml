@@ -2,11 +2,11 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/logdata.md" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/doc/logdata.md" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/doc/usedata.md" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/Community.sql" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/Device.sql" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/Person.sql" charset="GBK" />
     <file url="file://$PROJECT_DIR$/src/main/resources/sql/Record.sql" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/usedata.md" charset="GBK" />
   </component>
 </project>
