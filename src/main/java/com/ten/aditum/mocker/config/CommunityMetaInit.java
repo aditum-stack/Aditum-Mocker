@@ -1,6 +1,7 @@
 package com.ten.aditum.mocker.config;
 
 
+import com.alibaba.fastjson.JSON;
 import com.ten.aditum.mocker.entity.Community;
 import com.ten.aditum.mocker.entity.Device;
 import com.ten.aditum.mocker.entity.Person;
@@ -31,7 +32,12 @@ public class CommunityMetaInit {
     public void init() {
         communityList = getForCommunity();
 
-        communityList.forEach(community -> {
+        System.out.println(communityList);
+
+        // 防止 "java.util.LinkedHashMap cannot be cast" 转换错误
+        for (Object obj : communityList) {
+            Community community = JSON.parseObject(JSON.toJSONString(obj), Community.class);
+
             String communityId = community.getCommunityId();
 
             personList = postForPerson(communityId);
@@ -39,7 +45,7 @@ public class CommunityMetaInit {
 
             // 生成新的communityMeta对象并加入到容器中
             CommunityMetaHolder.newCommunityMeta(community, deviceList, personList);
-        });
+        }
 
         log.info("CommunityMeta init finished: {}", CommunityMetaHolder.getCommunityMetaString());
     }
