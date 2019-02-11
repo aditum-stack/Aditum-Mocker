@@ -6,6 +6,7 @@ import com.ten.aditum.mocker.execute.ThreadPoolConfig;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -13,25 +14,18 @@ import java.util.concurrent.ThreadPoolExecutor;
 @SpringBootApplication
 public class AditumMockerApplication {
 
-    @Autowired
-    private static ThreadPoolConfig threadPoolConfig;
-
-    @Autowired
-    private static CommunityMetaInit communityMetaInit;
-
-    @Autowired
-    private static CommunityTablesHolder communityTablesHolder;
-
     public static void main(String[] args) {
         SpringApplication.run(AditumMockerApplication.class, args);
 
-        communityMetaInit.init();
+        new CommunityMetaInit().init();
 
-        threadPoolConfig.taskExecutor();
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadPoolConfig.class);
+        CommunityTablesHolder service = context.getBean(CommunityTablesHolder.class);
 
-        for (int i = 0; i < 10; i++) {
-            communityTablesHolder.run();
+        for (int i = 0; i < 1; i++) {
+            service.run(); // 执行异步任务
         }
+        context.close();
     }
 
 }

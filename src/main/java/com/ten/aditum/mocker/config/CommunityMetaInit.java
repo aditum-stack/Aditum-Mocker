@@ -17,9 +17,9 @@ import java.util.List;
 @Slf4j
 public class CommunityMetaInit {
 
-    private static final String COMMUNITY_API = "http://localhost:8080:community";
-    private static final String PERSON_API = "http://localhost:8080/person";
-    private static final String DEVICE_API = "http://localhost:8080/device";
+    private static final String COMMUNITY_API = "http://localhost:9006/community";
+    private static final String PERSON_API = "http://localhost:9006/person";
+    private static final String DEVICE_API = "http://localhost:9006/device";
 
     private List<Community> communityList;
     private List<Person> personList;
@@ -63,7 +63,7 @@ public class CommunityMetaInit {
         Person person = new Person();
         person.setCommunityId(communityId);
 
-        ResultModel personResult = new RestTemplate().postForEntity(PERSON_API, person, ResultModel.class).getBody();
+        ResultModel personResult = new RestTemplate().getForEntity(PERSON_API, ResultModel.class, person).getBody();
         if (personResult.getCode() == 0) {
             return (List<Person>) personResult.getData();
         } else {
@@ -78,7 +78,7 @@ public class CommunityMetaInit {
         Device device = new Device();
         device.setCommunityId(communityId);
 
-        ResultModel deviceResult = new RestTemplate().postForEntity(DEVICE_API, device, ResultModel.class).getBody();
+        ResultModel deviceResult = new RestTemplate().getForEntity(DEVICE_API, ResultModel.class, device).getBody();
         if (deviceResult.getCode() == 0) {
             return (List<Device>) deviceResult.getData();
         } else {
