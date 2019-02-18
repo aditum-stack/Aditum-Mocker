@@ -153,14 +153,20 @@ public class CommunityTable {
 
             // 获取用户上次访问时间
             String personnelId = thePerson.getPersonnelId();
-            long lastaccesstime = personAccessInterval.get(personnelId);
-
+            long lastaccesstime = personAccessInterval.getOrDefault(personnelId, 0L);
+            // 用户第一次访问
+            if (lastaccesstime == 0L) {
+                personAccessInterval.put(personnelId, System.currentTimeMillis());
+            }
             // 判断是否满足最小访问时间间隔
-            long currentTime = System.currentTimeMillis();
-            long subtract = currentTime - lastaccesstime;
+            else {
+                long currentTime = System.currentTimeMillis();
+                long subtract = currentTime - lastaccesstime;
 
-            if (subtract < TIME_OUT_MS) {
-                return;
+                // 访问间隔过小
+                if (subtract < TIME_OUT_MS) {
+                    return;
+                }
             }
 
             /* 执行访问 */

@@ -13,13 +13,12 @@ public class GeneralAccessStrategy implements AccessStrategy {
     @Override
     public AccessType select(String personId) {
         AccessType type = personAccessTypeMap.get(personId);
+        // 初始化人员
         if (type == null) {
-            // 初始化人员
-            personAccessTypeMap.put(personId, AccessType.Enter);
-        } else {
-            // 进出顺序翻转
-            personAccessTypeMap.put(personId, flip(type));
+            type = AccessType.Enter;
         }
+        // 进出顺序翻转
+        personAccessTypeMap.put(personId, flip(type));
         return type;
     }
 
