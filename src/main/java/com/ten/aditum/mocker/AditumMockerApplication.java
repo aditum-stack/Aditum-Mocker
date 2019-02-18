@@ -18,14 +18,6 @@ public class AditumMockerApplication {
         SpringApplication.run(AditumMockerApplication.class, args);
 
         new CommunityMetaInit().init();
-
-        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ThreadPoolConfig.class);
-        CommunityTablesHolder service = context.getBean(CommunityTablesHolder.class);
-
-        for (int i = 0; i < 1; i++) {
-            service.run(); // 执行异步任务
-        }
-        context.close();
     }
 
 }

@@ -1,10 +1,3 @@
 # Created by .ignore support plugin (hsz.mobi)
 .gitignore
 .idea
-log/
-src/main/resources/sql/Community.sql
-src/main/resources/sql/Device.sql
-src/main/resources/sql/Person.sql
-src/main/resources/sql/Record.sql
-src/test/
-target/
