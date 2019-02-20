@@ -20,16 +20,11 @@ public class QuartzService {
 
     private static AtomicInteger atomicInteger;
 
+    private static CommunityTablesHolder service;
+
     static {
         atomicInteger = new AtomicInteger(0);
-    }
-
-    private AnnotationConfigApplicationContext context;
-    private CommunityTablesHolder service;
-
-    public QuartzService() {
-        context = new AnnotationConfigApplicationContext(ThreadPoolConfig.class);
-        service = context.getBean(CommunityTablesHolder.class);
+        service = CommunityTablesHolder.INSTANCE;
     }
 
     /**

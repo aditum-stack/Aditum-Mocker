@@ -28,11 +28,13 @@ public class CommunityTablesHolder {
     /**
      * 初始化
      */
-    public CommunityTablesHolder() {
+    private CommunityTablesHolder() {
         communityTableList = new ArrayList<>();
 
         // 获取Meta数据集合
         List<CommunityMeta> communityMetas = CommunityMetaHolder.getAllCommunityMeta();
+
+        assert communityMetas.size() != 0;
 
         // 初始化Table容器
         communityMetas.forEach(communityMeta -> {
@@ -47,7 +49,6 @@ public class CommunityTablesHolder {
     /**
      * 每个社区都执行一遍全设备随机访问
      */
-    @Async
     public void run() {
         communityTableList.forEach(CommunityTable::runAllRandomAccess);
     }

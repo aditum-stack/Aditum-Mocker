@@ -14,10 +14,12 @@ import java.util.concurrent.ThreadPoolExecutor;
 @SpringBootApplication
 public class AditumMockerApplication {
 
+    static {
+        new CommunityMetaInit().init();
+    }
+
     public static void main(String[] args) {
         SpringApplication.run(AditumMockerApplication.class, args);
-
-        new CommunityMetaInit().init();
     }
 
 }

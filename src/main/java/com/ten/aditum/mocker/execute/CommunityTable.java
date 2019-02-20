@@ -142,12 +142,15 @@ public class CommunityTable {
         private static final long TIME_OUT_MS = 1000 * 60 * 60 * 6;
 
         /**
-         * 访问设备并打印结果
+         * 访问设备并打印结果，TODO 模拟访问逻辑的添加
          */
         void accessDevice(Device theDevice, Person thePerson) {
+            log.info("开始启动模拟访问逻辑...");
+
             // 随机失败
             double flag = Math.random();
             if (flag < RANDOM_FAILURE_PROBABILITY) {
+                log.info("模拟访问随机失败...imei=" + theDevice.getImei());
                 return;
             }
 
@@ -165,6 +168,7 @@ public class CommunityTable {
 
                 // 访问间隔过小
                 if (subtract < TIME_OUT_MS) {
+                    log.info("模拟访问访问间隔过小...imei=" + theDevice.getImei());
                     return;
                 }
             }

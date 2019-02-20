@@ -49,7 +49,6 @@ public class CommunityMetaHolder {
      */
     public static List<CommunityMeta> getAllCommunityMeta() {
         return new ArrayList<>(communityMetaIdMap.values());
-
     }
 
     /**
