@@ -43,8 +43,8 @@ public class CommunityMetaInit {
 
             String communityId = community.getCommunityId();
 
-            personList = postForPerson(communityId);
-            deviceList = postForDevice(communityId);
+            personList = getForPerson(communityId);
+            deviceList = getForDevice(communityId);
 
             // 生成新的communityMeta对象并加入到容器中
             CommunityMetaHolder.newCommunityMeta(community, deviceList, personList);
@@ -69,7 +69,7 @@ public class CommunityMetaInit {
     /**
      * http远程获取person数据
      */
-    private List<Person> postForPerson(String communityId) {
+    private List<Person> getForPerson(String communityId) {
         Person person = new Person();
         person.setCommunityId(communityId);
 
@@ -85,7 +85,7 @@ public class CommunityMetaInit {
     /**
      * http远程获取device数据
      */
-    private List<Device> postForDevice(String communityId) {
+    private List<Device> getForDevice(String communityId) {
         Device device = new Device();
         device.setCommunityId(communityId);
 
