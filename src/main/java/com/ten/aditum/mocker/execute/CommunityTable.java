@@ -5,6 +5,7 @@ import com.ten.aditum.mocker.config.CommunityMeta;
 import com.ten.aditum.mocker.entity.Record;
 import com.ten.aditum.mocker.excep.BackRemoteException;
 import com.ten.aditum.mocker.model.ResultModel;
+import com.ten.aditum.mocker.quartz.FrequencyChangable;
 import com.ten.aditum.mocker.strategy.*;
 import com.ten.aditum.mocker.entity.Device;
 import com.ten.aditum.mocker.entity.Person;
@@ -99,10 +100,28 @@ public class CommunityTable {
         executor.startAllAccess();
     }
 
-    class AccessExecutor {
+    class AccessExecutor implements FrequencyChangable {
 
         private int deviceSize;
         private int personSize;
+
+        // 随机失败概率 不进行任何模拟访问操作
+        private static final double RANDOM_FAILURE_PROBABILITY = 0.15;
+
+        // 用户访问时间最小间隔 6h = 1000ms * 60s * 60min * 6h
+        private long TIME_OUT_MS = 1000 * 60 * 60 * 6;
+
+        // 快速测试访问间隔 1min = 1000ms * 60s
+        private long TEST_TIME_OUT_MS = 1000 * 60;
+
+        /**
+         * 改变访问间隔
+         */
+        @Override
+        public void changeFrequency(long val) {
+            this.TIME_OUT_MS = val;
+            this.TEST_TIME_OUT_MS = val;
+        }
 
         /**
          * 用户访问时间间隔 {@literal <PersonnelId, LastAccessTime>}
@@ -140,14 +159,6 @@ public class CommunityTable {
                 accessDevice(device, choosePerson);
             });
         }
-
-        // 随机失败概率 不进行任何模拟访问操作
-        private static final double RANDOM_FAILURE_PROBABILITY = 0.15;
-        // 用户访问时间最小间隔 6h = 1000ms * 60s * 60min * 6h
-        private static final long TIME_OUT_MS = 1000 * 60 * 60 * 6;
-
-        // 快速测试访问间隔 1min = 1000ms * 60s
-        private static final long TEST_TIME_OUT_MS = 1000 * 60;
 
         /**
          * 访问设备并打印结果，TODO 模拟访问逻辑的添加
@@ -198,17 +209,18 @@ public class CommunityTable {
             // 发送http到后台服务
             postForRecord(record);
         }
-    }
 
-    private static final String RECORD_API = "http://localhost:9006/record";
+        // url
+        private static final String RECORD_API = "http://localhost:9006/record";
 
-    /**
-     * http远程插入record数据
-     */
-    private void postForRecord(Record record) {
-        ResultModel result = new RestTemplate().postForObject(RECORD_API, record, ResultModel.class);
-        if (result.getCode() != 0) {
-            throw new BackRemoteException("Post for record error!");
+        /**
+         * http远程插入record数据
+         */
+        private void postForRecord(Record record) {
+            ResultModel result = new RestTemplate().postForObject(RECORD_API, record, ResultModel.class);
+            if (result.getCode() != 0) {
+                throw new BackRemoteException("Post for record error!");
+            }
         }
     }
 }
