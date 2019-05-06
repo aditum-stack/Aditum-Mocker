@@ -16,9 +16,8 @@ import java.util.List;
 /**
  * 从数据库获取初始数据
  */
-@Component
-//@SuppressWarnings("unchecked")
 @Slf4j
+@Component
 public class CommunityMetaInit {
 
     private static final String COMMUNITY_API = "http://localhost:9006/community";
@@ -58,6 +57,10 @@ public class CommunityMetaInit {
      */
     public List<Community> getForCommunity() {
         ResultModel communityResult = new RestTemplate().getForEntity(COMMUNITY_API, ResultModel.class).getBody();
+        if (communityResult == null) {
+            throw new BackRemoteException("Get for community list error!");
+        }
+
         if (communityResult.getCode() == 0) {
             List result = (List) communityResult.getData();
             return JSON.parseArray(JSON.toJSONString(result), Community.class);
@@ -74,6 +77,10 @@ public class CommunityMetaInit {
         person.setCommunityId(communityId);
 
         ResultModel personResult = new RestTemplate().getForEntity(PERSON_API, ResultModel.class, person).getBody();
+        if (personResult == null) {
+            throw new BackRemoteException("Post for person list error!");
+        }
+
         if (personResult.getCode() == 0) {
             List result = (List) personResult.getData();
             return JSON.parseArray(JSON.toJSONString(result), Person.class);
@@ -90,6 +97,10 @@ public class CommunityMetaInit {
         device.setCommunityId(communityId);
 
         ResultModel deviceResult = new RestTemplate().getForEntity(DEVICE_API, ResultModel.class, device).getBody();
+        if (deviceResult == null) {
+            throw new BackRemoteException("Post for device list error!");
+        }
+
         if (deviceResult.getCode() == 0) {
             List result = (List) deviceResult.getData();
             return JSON.parseArray(JSON.toJSONString(result), Device.class);

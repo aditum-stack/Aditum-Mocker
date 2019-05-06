@@ -1,11 +1,5 @@
-eureka:
-  instance:
-    prefer-ip-address: true
-  client:
-    register-with-eureka: true
-    fetch-registry: true
-    serviceUrl:
-      defaultZone: http://localhost:10001/eureka/
-
 server:
+  tomcat:
+    max-threads: 800
+    uri-encoding: UTF-8
   port: 9001

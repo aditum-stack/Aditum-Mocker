@@ -1,18 +1,15 @@
 package com.ten.aditum.mocker.execute;
 
-import com.alibaba.fastjson.JSON;
 import com.ten.aditum.mocker.config.CommunityMeta;
+import com.ten.aditum.mocker.entity.Device;
+import com.ten.aditum.mocker.entity.Person;
 import com.ten.aditum.mocker.entity.Record;
 import com.ten.aditum.mocker.excep.BackRemoteException;
 import com.ten.aditum.mocker.model.ResultModel;
-import com.ten.aditum.mocker.quartz.FrequencyChangable;
 import com.ten.aditum.mocker.strategy.*;
-import com.ten.aditum.mocker.entity.Device;
-import com.ten.aditum.mocker.entity.Person;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
@@ -100,7 +97,7 @@ public class CommunityTable {
         executor.startAllAccess();
     }
 
-    class AccessExecutor implements FrequencyChangable {
+    class AccessExecutor{
 
         private int deviceSize;
         private int personSize;
@@ -113,15 +110,6 @@ public class CommunityTable {
 
         // 快速测试访问间隔 1min = 1000ms * 60s
         private long TEST_TIME_OUT_MS = 1000 * 60;
-
-        /**
-         * 改变访问间隔
-         */
-        @Override
-        public void changeFrequency(long val) {
-            this.TIME_OUT_MS = val;
-            this.TEST_TIME_OUT_MS = val;
-        }
 
         /**
          * 用户访问时间间隔 {@literal <PersonnelId, LastAccessTime>}

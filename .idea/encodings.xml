@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="Encoding">
+  <component name="Encoding" addBOMForNewFiles="with NO BOM">
+    <file url="file://$PROJECT_DIR$/../Aditum-Back/src/main/resources/sql/Community.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../Aditum-Back/src/main/resources/sql/Device.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../Aditum-Back/src/main/resources/sql/Person.sql" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/../Aditum-Back/src/main/resources/sql/Record.sql" charset="GBK" />
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/doc/logdata.md" charset="GBK" />
     <file url="file://$PROJECT_DIR$/doc/usedata.md" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/sql/Community.sql" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/sql/Device.sql" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/sql/Person.sql" charset="GBK" />
-    <file url="file://$PROJECT_DIR$/src/main/resources/sql/Record.sql" charset="GBK" />
   </component>
 </project>
