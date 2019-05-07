@@ -80,16 +80,28 @@ public class BackRemoteApi {
     /**
      * http远程提交person数据
      */
-    public static boolean postForPerson(Person person) {
+    public static void postForPerson(Person person) {
         ResultModel personResult = new RestTemplate().postForObject(PERSON_API, person, ResultModel.class);
         if (personResult == null) {
             throw new BackRemoteException("Post for person error!");
         }
 
-        if (personResult.getCode() == 0) {
-            return true;
-        } else {
+        if (personResult.getCode() != 0) {
             throw new BackRemoteException("Post for person error!");
+        }
+    }
+
+    /**
+     * http远程提交Device数据
+     */
+    public static void postForDevice(Device device) {
+        ResultModel deviceResult = new RestTemplate().postForObject(DEVICE_API, device, ResultModel.class);
+        if (deviceResult == null) {
+            throw new BackRemoteException("Post for device error!");
+        }
+
+        if (deviceResult.getCode() != 0) {
+            throw new BackRemoteException("Post for device error!");
         }
     }
 

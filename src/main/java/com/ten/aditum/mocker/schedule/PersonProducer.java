@@ -3,7 +3,7 @@ package com.ten.aditum.mocker.schedule;
 
 import com.ten.aditum.mocker.entity.Person;
 import com.ten.aditum.mocker.http.BackRemoteApi;
-import com.ten.aditum.mocker.util.RandomValue;
+import com.ten.aditum.mocker.util.PersonMocker;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,7 @@ public class PersonProducer {
      */
     @Scheduled(cron = "0 0 0/1 * * ?")
     public void reWrite() {
-        Person person = RandomValue.newPerson();
+        Person person = PersonMocker.newPerson();
 
         log.info("产生新用户 : {}", person);
 
