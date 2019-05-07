@@ -12,7 +12,6 @@ import java.util.List;
 /**
  * 社区数据元对象：包含一个社区的community、device、person数据
  */
-@Slf4j
 @Data
 public class CommunityMeta {
     /**
