@@ -1,6 +1,7 @@
 package com.ten.aditum.mocker.schedule;
 
 
+import com.ten.aditum.mocker.config.CommunityConfigSupport;
 import com.ten.aditum.mocker.entity.Person;
 import com.ten.aditum.mocker.http.BackRemoteApi;
 import com.ten.aditum.mocker.util.PersonMocker;
@@ -26,6 +27,8 @@ public class PersonProducer {
         log.info("产生新用户 : {}", person);
 
         BackRemoteApi.postForPerson(person);
+
+        CommunityConfigSupport.update();
     }
 
 }

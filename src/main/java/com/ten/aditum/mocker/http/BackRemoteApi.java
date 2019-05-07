@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.ten.aditum.mocker.entity.Community;
 import com.ten.aditum.mocker.entity.Device;
 import com.ten.aditum.mocker.entity.Person;
+import com.ten.aditum.mocker.entity.Record;
 import com.ten.aditum.mocker.excep.BackRemoteException;
 import com.ten.aditum.mocker.model.ResultModel;
 import org.springframework.web.client.RestTemplate;
@@ -15,6 +16,7 @@ public class BackRemoteApi {
     private static final String COMMUNITY_API = "http://localhost:9006/community";
     private static final String PERSON_API = "http://localhost:9006/person";
     private static final String DEVICE_API = "http://localhost:9006/device";
+    private static final String RECORD_API = "http://localhost:9006/record";
 
     // ------------------------------------------------------------------------ GET
 
@@ -78,6 +80,20 @@ public class BackRemoteApi {
     // ------------------------------------------------------------------------ POST
 
     /**
+     * http远程提交device数据
+     */
+    public static void postForDevice(Device device) {
+        ResultModel deviceResult = new RestTemplate().postForObject(DEVICE_API, device, ResultModel.class);
+        if (deviceResult == null) {
+            throw new BackRemoteException("Post for device error!");
+        }
+
+        if (deviceResult.getCode() != 0) {
+            throw new BackRemoteException("Post for device error!");
+        }
+    }
+
+    /**
      * http远程提交person数据
      */
     public static void postForPerson(Person person) {
@@ -92,16 +108,16 @@ public class BackRemoteApi {
     }
 
     /**
-     * http远程提交Device数据
+     * http远程提交record数据
      */
-    public static void postForDevice(Device device) {
-        ResultModel deviceResult = new RestTemplate().postForObject(DEVICE_API, device, ResultModel.class);
-        if (deviceResult == null) {
-            throw new BackRemoteException("Post for device error!");
+    public static void postForRecord(Record record) {
+        ResultModel recordResult = new RestTemplate().postForObject(RECORD_API, record, ResultModel.class);
+        if (recordResult == null) {
+            throw new BackRemoteException("Post for record error!");
         }
 
-        if (deviceResult.getCode() != 0) {
-            throw new BackRemoteException("Post for device error!");
+        if (recordResult.getCode() != 0) {
+            throw new BackRemoteException("Post for record error!");
         }
     }
 

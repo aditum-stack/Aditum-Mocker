@@ -1,6 +1,7 @@
 package com.ten.aditum.mocker.schedule;
 
 
+import com.ten.aditum.mocker.config.CommunityConfigSupport;
 import com.ten.aditum.mocker.entity.Device;
 import com.ten.aditum.mocker.http.BackRemoteApi;
 import com.ten.aditum.mocker.util.DeviceMocker;
@@ -26,6 +27,8 @@ public class DeviceProducer {
         log.info("产生新设备 : {}", device);
 
         BackRemoteApi.postForDevice(device);
+
+        CommunityConfigSupport.update();
     }
 
 }

@@ -1,6 +1,6 @@
 package com.ten.aditum.mocker;
 
-import com.ten.aditum.mocker.config.CommunityMetaInit;
+import com.ten.aditum.mocker.config.CommunityConfigSupport;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -8,7 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class AditumMockerApplication {
 
     static {
-        new CommunityMetaInit().init();
+        CommunityConfigSupport.update();
     }
 
     public static void main(String[] args) {

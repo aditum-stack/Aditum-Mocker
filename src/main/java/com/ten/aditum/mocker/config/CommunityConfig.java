@@ -13,7 +13,7 @@ import java.util.List;
  * 社区数据元对象：包含一个社区的community、device、person数据
  */
 @Data
-public class CommunityMeta {
+public class CommunityConfig {
     /**
      * 社区对象数据信息
      */
@@ -24,7 +24,7 @@ public class CommunityMeta {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("\r\nCommunityMeta init :");
+        builder.append("\r\nCommunityConfig update :");
         builder.append(this.community.toString());
         builder.append("\r\nDeviceList: ");
         this.deviceList.forEach(device -> builder.append(device.toString()));

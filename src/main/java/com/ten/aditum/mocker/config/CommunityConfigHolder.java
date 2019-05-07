@@ -9,26 +9,28 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * 社区数据元对象容器集合
  */
 @Slf4j
 @Service
-public class CommunityMetaHolder {
+public class CommunityConfigHolder {
     /**
      * 社区数据对象的集合
      */
-    private static HashMap<String, CommunityMeta> communityMetaIdMap = new HashMap<>();
-    private static HashMap<String, CommunityMeta> communityMetaNameMap = new HashMap<>();
+    private static Map<String, CommunityConfig> communityMetaIdMap = new ConcurrentHashMap<>();
+    private static Map<String, CommunityConfig> communityMetaNameMap = new ConcurrentHashMap<>();
 
     /**
      * 初始化对象数据
      */
-    public static void newCommunityMeta(Community community,
-                                        List<Device> devices,
-                                        List<Person> people) {
-        CommunityMeta meta = new CommunityMeta();
+    synchronized static void newCommunityMeta(Community community,
+                                              List<Device> devices,
+                                              List<Person> people) {
+        CommunityConfig meta = new CommunityConfig();
         meta.setCommunity(community);
         meta.setDeviceList(devices);
         meta.setPersonList(people);
@@ -36,10 +38,10 @@ public class CommunityMetaHolder {
     }
 
     /**
-     * 将元数据对象放入容器：插入数据的操作为单线程操作，故采用非线程安全的hashmap也可
+     * 将元数据对象放入容器
      */
     private static void putCommunityMetaMap(Community community,
-                                            CommunityMeta meta) {
+                                            CommunityConfig meta) {
         communityMetaIdMap.putIfAbsent(community.getCommunityId(), meta);
         communityMetaNameMap.putIfAbsent(community.getCommunityName(), meta);
     }
@@ -47,21 +49,21 @@ public class CommunityMetaHolder {
     /**
      * 获取所有社区Mata的集合
      */
-    public static List<CommunityMeta> getAllCommunityMeta() {
+    public static List<CommunityConfig> getAllCommunityMeta() {
         return new ArrayList<>(communityMetaIdMap.values());
     }
 
     /**
      * 通过社区名称获取Meta
      */
-    public static CommunityMeta getCommunityMetaByName(String communityName) {
+    public static CommunityConfig getCommunityMetaByName(String communityName) {
         return communityMetaNameMap.get(communityName);
     }
 
     /**
      * 通过社区ID获取Meta
      */
-    public static CommunityMeta getCommunityMetaById(String communityId) {
+    public static CommunityConfig getCommunityMetaById(String communityId) {
         return communityMetaIdMap.get(communityId);
     }
 

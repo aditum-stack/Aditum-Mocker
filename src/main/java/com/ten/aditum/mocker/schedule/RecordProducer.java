@@ -1,11 +1,8 @@
-package com.ten.aditum.mocker.quartz;
+package com.ten.aditum.mocker.schedule;
 
-
-import com.ten.aditum.mocker.execute.CommunityTablesHolder;
-import com.ten.aditum.mocker.execute.ThreadPoolConfig;
+import com.ten.aditum.mocker.execute.CommunityAccess;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -16,15 +13,13 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Configuration
 @EnableScheduling
 @EnableAutoConfiguration
-public class QuartzService {
+public class RecordProducer {
 
     private static AtomicInteger atomicInteger;
 
-    private static CommunityTablesHolder service;
 
     static {
         atomicInteger = new AtomicInteger(0);
-        service = CommunityTablesHolder.INSTANCE;
     }
 
     /**
@@ -32,10 +27,9 @@ public class QuartzService {
      */
     @Scheduled(cron = "0 0/1 * * * ?")
     public void reWrite() {
-        log.info("进行模拟调度，当前次数：" + atomicInteger.addAndGet(1));
+        log.info("进行模拟访问，当前次数：" + atomicInteger.addAndGet(1));
 
-        for (int i = 0; i < 1; i++) {
-            service.run(); // 执行异步任务
-        }
+        CommunityAccess.run();
     }
+
 }
