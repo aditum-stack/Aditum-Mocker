@@ -42,8 +42,8 @@ public class CommunityConfigHolder {
      */
     private static void putCommunityMetaMap(Community community,
                                             CommunityConfig meta) {
-        communityMetaIdMap.putIfAbsent(community.getCommunityId(), meta);
-        communityMetaNameMap.putIfAbsent(community.getCommunityName(), meta);
+        communityMetaIdMap.put(community.getCommunityId(), meta);
+        communityMetaNameMap.put(community.getCommunityName(), meta);
     }
 
     /**

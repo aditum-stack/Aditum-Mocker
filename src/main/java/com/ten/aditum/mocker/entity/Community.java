@@ -36,6 +36,10 @@ public class Community {
      */
     private Integer deviceOnlineCount;
     /**
+     * 社区用户总数
+     */
+    private Integer personCount;
+    /**
      * 创建时间
      */
     private String createTime;

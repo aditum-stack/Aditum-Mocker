@@ -14,7 +14,9 @@ import com.ten.aditum.mocker.strategy.GeneralAccessStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -36,17 +38,23 @@ public class CommunityAccess {
     /**
      * 随机失败概率 不进行任何模拟访问操作
      */
-    private static final double RANDOM_FAILURE_PROBABILITY = 0.9;
+    public static volatile double RANDOM_FAILURE_PROBABILITY = 0.8;
 
     /**
-     * 用户访问时间最小间隔 6h = 1000ms * 60s * 60min * 6h
+     * 用户访问时间最小间隔 8h = 1000ms * 60s * 60min * 8h
      */
-    private static final long TIME_OUT_MS = 1000 * 60 * 60 * 6;
+    private static final long TIME_OUT_MS = 1000 * 60 * 60 * 8;
 
     /**
      * 快速测试访问间隔 1min = 1000ms * 60s
      */
     private static final long TEST_TIME_OUT_MS = 1000 * 60;
+
+    /**
+     * 拒绝访问时间
+     */
+    private static final String ILLEGAL_START = "00:00:00";
+    private static final String ILLEGAL_STOP = "06:00:00";
 
     /**
      * 每个社区都执行一遍全设备随机访问
@@ -99,14 +107,27 @@ public class CommunityAccess {
             long currentTime = System.currentTimeMillis();
             long subtract = currentTime - lastaccesstime;
 
+            // 随机延长访问间隔
+            long randomTime = (long) (Math.random() * TIME_OUT_MS);
+
             // 访问间隔过小
-            if (subtract < CommunityAccess.TIME_OUT_MS) {
-                log.info("模拟访问访问间隔过小...imei=" + theDevice.getImei());
+            if (subtract < CommunityAccess.TIME_OUT_MS + randomTime) {
+                log.info("模拟访问访问间隔过小...imei={}", theDevice.getImei());
                 return;
             }
         }
 
-        /* 执行访问 */
+        // 是否拒绝访问时间 (二十四小时制)
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        String current = format.format(new Date());
+
+        // 当前时间大于START且小于STOP，拒绝访问
+        if (current.compareTo(ILLEGAL_START) > 0 && ILLEGAL_STOP.compareTo(current) > 0) {
+            log.warn("当前为拒绝访问时间 {}", current);
+            return;
+        }
+
+        /* 全部通过，执行访问 */
 
         // 获取访问的进出入顺序
         AccessType type = accessStrategy.select(personnelId);
