@@ -49,8 +49,8 @@ public class RecordProducer {
     /**
      * 每隔10分钟，进行模拟访问
      */
-    @Scheduled(cron = "0 0/1 * * * ? ")
-//    @Scheduled(cron = "0 0/10 * * * ? ")
+//    @Scheduled(cron = "0 0/1 * * * ? ")
+    @Scheduled(cron = "0 0/10 * * * ? ")
     public void reWrite() {
         log.info("进行模拟访问，当前次数：" + atomicInteger.addAndGet(1));
 
