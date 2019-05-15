@@ -80,6 +80,11 @@ public class RecordProducer {
             CommunityAccess.RANDOM_FAILURE_PROBABILITY = 0.5;
         }
 
+        // 默认时段
+        if (!hot1 && !hot2 && !hot3) {
+            CommunityAccess.RANDOM_FAILURE_PROBABILITY = 0.8;
+        }
+
         log.info("当前时间 {}, 失败概率 {}", currentHour(), CommunityAccess.RANDOM_FAILURE_PROBABILITY);
     }
 
