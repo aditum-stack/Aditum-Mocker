@@ -46,11 +46,15 @@ public class RecordProducer {
     private static final String HOT_START_3 = "11:00:00";
     private static final String HOT_STOP_3 = "14:00:00";
 
-    /**
+    /*
      * 每隔10分钟，进行模拟访问
      */
-//    @Scheduled(cron = "0 0/1 * * * ? ")
-    @Scheduled(cron = "0 0/10 * * * ? ")
+//    @Scheduled(cron = "0 0/10 * * * ? ")
+
+    /**
+     * 每隔1分钟，进行模拟访问
+     */
+    @Scheduled(cron = "0 0/1 * * * ? ")
     public void reWrite() {
         log.info("进行模拟访问，当前次数：" + atomicInteger.addAndGet(1));
 

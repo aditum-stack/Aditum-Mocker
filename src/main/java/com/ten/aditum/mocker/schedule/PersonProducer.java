@@ -17,10 +17,15 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableAutoConfiguration
 public class PersonProducer {
 
-    /**
+    /*
      * 每1小时产生一位模拟用户
      */
-    @Scheduled(cron = "0 0 0/1 * * ?")
+//    @Scheduled(cron = "0 0 0/1 * * ?")
+
+    /**
+     * 每10分钟产生一位模拟用户
+     */
+    @Scheduled(cron = "0 0/10 * * * ? ")
     public void reWrite() {
         Person person = PersonMocker.newPerson();
 
