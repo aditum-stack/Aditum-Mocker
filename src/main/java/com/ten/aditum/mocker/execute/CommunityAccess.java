@@ -8,14 +8,11 @@ import com.ten.aditum.mocker.entity.Record;
 import com.ten.aditum.mocker.excep.BackRemoteException;
 import com.ten.aditum.mocker.http.BackRemoteApi;
 import com.ten.aditum.mocker.strategy.AccessStrategy;
-import com.ten.aditum.mocker.strategy.AccessStrategyType;
 import com.ten.aditum.mocker.strategy.AccessType;
-import com.ten.aditum.mocker.strategy.GeneralAccessStrategy;
+import com.ten.aditum.mocker.strategy.RandomAccessStrategy;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -28,7 +25,7 @@ public class CommunityAccess {
     /**
      * 默认采用General访问策略
      */
-    private static AccessStrategy accessStrategy = new GeneralAccessStrategy();
+    private static AccessStrategy accessStrategy = new RandomAccessStrategy();
 
     /**
      * 用户访问时间间隔 {@literal <PersonnelId, LastAccessTime>}
