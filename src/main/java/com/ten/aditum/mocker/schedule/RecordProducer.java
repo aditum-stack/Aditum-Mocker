@@ -66,24 +66,24 @@ public class RecordProducer {
         // 早高峰
         boolean hot1 = between(HOT_START_1, HOT_STOP_1);
         if (hot1) {
-            CommunityAccess.BASE_RANDOM_FAIL = 0.1;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.0;
         }
 
         // 晚高峰
         boolean hot2 = between(HOT_START_2, HOT_STOP_2);
         if (hot2) {
-            CommunityAccess.BASE_RANDOM_FAIL = 0.3;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.1;
         }
 
         // 午休
         boolean hot3 = between(HOT_START_3, HOT_STOP_3);
         if (hot3) {
-            CommunityAccess.BASE_RANDOM_FAIL = 0.5;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.3;
         }
 
         // 默认时段
         if (!hot1 && !hot2 && !hot3) {
-            CommunityAccess.BASE_RANDOM_FAIL = 0.8;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.5;
         }
 
         log.info("当前时间 {}, 基础失败概率 {}", currentHour(), CommunityAccess.BASE_RANDOM_FAIL);
