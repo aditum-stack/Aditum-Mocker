@@ -40,6 +40,7 @@ public class RecordProducer {
      */
     private static final String HOT_START_2 = "17:00:00";
     private static final String HOT_STOP_2 = "19:00:00";
+
     /**
      * 热门访问时间 5-7 午休
      */
@@ -65,27 +66,27 @@ public class RecordProducer {
         // 早高峰
         boolean hot1 = between(HOT_START_1, HOT_STOP_1);
         if (hot1) {
-            CommunityAccess.RANDOM_FAILURE_PROBABILITY = 0.1;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.1;
         }
 
         // 晚高峰
         boolean hot2 = between(HOT_START_2, HOT_STOP_2);
         if (hot2) {
-            CommunityAccess.RANDOM_FAILURE_PROBABILITY = 0.3;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.3;
         }
 
         // 午休
         boolean hot3 = between(HOT_START_3, HOT_STOP_3);
         if (hot3) {
-            CommunityAccess.RANDOM_FAILURE_PROBABILITY = 0.5;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.5;
         }
 
         // 默认时段
         if (!hot1 && !hot2 && !hot3) {
-            CommunityAccess.RANDOM_FAILURE_PROBABILITY = 0.8;
+            CommunityAccess.BASE_RANDOM_FAIL = 0.8;
         }
 
-        log.info("当前时间 {}, 失败概率 {}", currentHour(), CommunityAccess.RANDOM_FAILURE_PROBABILITY);
+        log.info("当前时间 {}, 基础失败概率 {}", currentHour(), CommunityAccess.BASE_RANDOM_FAIL);
     }
 
     private boolean between(String start, String stop) {
