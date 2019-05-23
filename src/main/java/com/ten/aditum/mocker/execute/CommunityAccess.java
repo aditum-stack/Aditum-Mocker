@@ -10,6 +10,7 @@ import com.ten.aditum.mocker.http.BackRemoteApi;
 import com.ten.aditum.mocker.strategy.AccessStrategy;
 import com.ten.aditum.mocker.strategy.AccessType;
 import com.ten.aditum.mocker.strategy.RandomAccessStrategy;
+import com.ten.aditum.mocker.util.TimeGenerator;
 import lombok.extern.slf4j.Slf4j;
 
 import java.text.SimpleDateFormat;
@@ -146,7 +147,7 @@ public class CommunityAccess {
             // 访问间隔过小
             if (subtract < timeOut) {
                 log.info("模拟访问时间过短 : 设备={} 姓名={} 倒计时={} ",
-                        alias, personnelName, getTimeFromSec(timeOut / 1000));
+                        alias, personnelName, TimeGenerator.getTimeFromSec(timeOut / 1000));
                 return;
             }
         }
@@ -179,7 +180,7 @@ public class CommunityAccess {
 
         // 生成日志
         log.warn("模拟访问成功!!!设备={} 姓名={} 访问间隔={} 失败概率={} IMEI={} ID={}",
-                alias, personnelName, getTimeFromSec(personTimeOutRandom.get(personnelId) / 1000),
+                alias, personnelName, TimeGenerator.getTimeFromSec(personTimeOutRandom.get(personnelId) / 1000),
                 personAccessRandomFail.get(personnelId), theDevice.getImei(), personnelId);
 
         // 发送http到后台服务
@@ -206,18 +207,6 @@ public class CommunityAccess {
             value -= decrease;
             entrySet.setValue(value);
         }
-    }
-
-    /**
-     * 秒转时间
-     */
-    private static String getTimeFromSec(long sec) {
-        // 毫秒数
-        long ms = sec * 1000;
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-        // 设置时区，防止+8小时
-        formatter.setTimeZone(TimeZone.getTimeZone("GMT+00:00"));
-        return formatter.format(ms);
     }
 
 }

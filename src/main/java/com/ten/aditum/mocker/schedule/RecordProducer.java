@@ -1,6 +1,7 @@
 package com.ten.aditum.mocker.schedule;
 
 import com.ten.aditum.mocker.execute.CommunityAccess;
+import com.ten.aditum.mocker.util.TimeGenerator;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
@@ -53,13 +54,12 @@ public class RecordProducer {
 //    @Scheduled(cron = "0 0/10 * * * ? ")
 
     /**
-     * 每隔1分钟，进行模拟访问
+     * 每隔5s，进行模拟访问
      */
-    @Scheduled(cron = "0 0/1 * * * ? ")
+    @Scheduled(cron = "0/5 * * * * ?")
     public void reWrite() {
         log.info("进行模拟访问，当前次数：" + atomicInteger.addAndGet(1));
-
-        CommunityAccess.run();
+        long start = System.currentTimeMillis();
 
         // 根据时间修改失败概率
 
@@ -86,7 +86,12 @@ public class RecordProducer {
             CommunityAccess.BASE_RANDOM_FAIL = 0.5;
         }
 
-        log.info("当前时间 {}, 基础失败概率 {}", currentHour(), CommunityAccess.BASE_RANDOM_FAIL);
+        CommunityAccess.run();
+
+        long end = System.currentTimeMillis();
+        long duration = end - start;
+        log.info("耗时 {}, 当前时间 {}, 基础失败概率 {}",
+                TimeGenerator.getTimeFromSec(duration / 1000), currentHour(), CommunityAccess.BASE_RANDOM_FAIL);
     }
 
     private boolean between(String start, String stop) {

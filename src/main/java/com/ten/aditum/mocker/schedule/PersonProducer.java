@@ -23,9 +23,9 @@ public class PersonProducer {
 //    @Scheduled(cron = "0 0 0/1 * * ?")
 
     /**
-     * 每10分钟产生一位模拟用户
+     * 每1分钟产生一位模拟用户
      */
-    @Scheduled(cron = "0 0/10 * * * ? ")
+    @Scheduled(cron = "0 0/1 * * * ? ")
     public void reWrite() {
         Person person = PersonMocker.newPerson();
 
