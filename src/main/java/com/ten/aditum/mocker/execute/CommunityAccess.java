@@ -147,7 +147,7 @@ public class CommunityAccess {
             // 访问间隔过小
             if (subtract < timeOut) {
                 log.info("模拟访问时间过短 : 设备={} 姓名={} 倒计时={} ",
-                        alias, personnelName, TimeGenerator.getTimeFromSec(timeOut / 1000));
+                        alias, personnelName, TimeGenerator.getTimeFromSec((timeOut - subtract) / 1000));
                 return;
             }
             // 访问间隔通过 -> 更新时间
