@@ -32,7 +32,7 @@ public class CommunityAccess {
      */
     private static ConcurrentHashMap<String, Long> personAccessInterval = new ConcurrentHashMap<>();
 
-    public static volatile double BASE_RANDOM_FAIL = 0.5;
+    public static volatile double BASE_RANDOM_FAIL = 0.8;
 
     /**
      * 用户访问随机失败概率，对每个用户都不相同，该值在每次 #REJECT_FAILURE_PROBABILITY 后触发
