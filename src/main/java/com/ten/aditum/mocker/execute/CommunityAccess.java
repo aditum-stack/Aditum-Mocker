@@ -150,6 +150,10 @@ public class CommunityAccess {
                         alias, personnelName, TimeGenerator.getTimeFromSec(timeOut / 1000));
                 return;
             }
+            // 访问间隔通过 -> 更新时间
+            else {
+                personAccessInterval.put(personnelId, currentTime);
+            }
         }
 
         /* step 3 */
