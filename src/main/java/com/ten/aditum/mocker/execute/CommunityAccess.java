@@ -45,9 +45,9 @@ public class CommunityAccess {
     private static ConcurrentHashMap<String, Long> personTimeOutRandom = new ConcurrentHashMap<>();
 
     /**
-     * 用户访问时间最小间隔 8h = 1000ms * 60s * 60min * 8h
+     * 用户访问时间最小间隔 6h = 1000ms * 60s * 60min * 6h
      */
-    private static final long TIME_OUT_MS = 1000 * 60 * 60 * 8;
+    private static final long TIME_OUT_MS = 1000 * 60 * 60 * 6;
 
     /**
      * 快速测试访问间隔 1min = 1000ms * 60s
