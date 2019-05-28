@@ -17,22 +17,20 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableAutoConfiguration
 public class DeviceProducer {
 
-    /*
-     * 每1天产生一台模拟设备
-     */
-//    @Scheduled(cron = "0 0 0 1/1 * ? ")
+//
+//    /**
+//     * 每1小时产生一台模拟设备
+//     */
+//    @Scheduled(cron = "0 0 0/1 * * ?")
 
     /**
-     * 每1小时产生一台模拟设备
+     * 每1天产生一台模拟设备
      */
-    @Scheduled(cron = "0 0 0/1 * * ?")
+    @Scheduled(cron = "0 0 0 1/1 * ? ")
     public void reWrite() {
         Device device = DeviceMocker.newDevice();
-
         log.info("产生新设备 : {}", device);
-
         BackRemoteApi.postForDevice(device);
-
         CommunityConfigSupport.update();
     }
 

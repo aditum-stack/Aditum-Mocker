@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
+@SuppressWarnings("unchecked")
 public class BackRemoteApi {
 
     private static final String COMMUNITY_API = "http://localhost:9006/community";

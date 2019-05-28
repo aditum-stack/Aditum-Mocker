@@ -4,7 +4,6 @@ package com.ten.aditum.mocker.excep;
  * 后端数据库服务未响应异常
  */
 public class BackRemoteException extends RuntimeException {
-    private static final long serialVersionUID = 1L;
 
     public BackRemoteException() {
         super("Back server not found or reject.");

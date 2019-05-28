@@ -54,9 +54,9 @@ public class RecordProducer {
 //    @Scheduled(cron = "0 0/10 * * * ? ")
 
     /**
-     * 每隔5s，进行模拟访问
+     * 每隔10s，进行模拟访问
      */
-    @Scheduled(cron = "0/5 * * * * ?")
+    @Scheduled(cron = "0/10 * * * * ?")
     public void reWrite() {
         log.info("进行模拟访问，当前次数：" + atomicInteger.addAndGet(1));
         long start = System.currentTimeMillis();

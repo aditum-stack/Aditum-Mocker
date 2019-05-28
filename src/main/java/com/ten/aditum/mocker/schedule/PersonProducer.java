@@ -17,22 +17,19 @@ import org.springframework.scheduling.annotation.Scheduled;
 @EnableAutoConfiguration
 public class PersonProducer {
 
-    /*
-     * 每1小时产生一位模拟用户
-     */
-//    @Scheduled(cron = "0 0 0/1 * * ?")
+//    /**
+//     * 每1分钟产生一位模拟用户
+//     */
+//    @Scheduled(cron = "0 0/1 * * * ? ")
 
     /**
-     * 每1分钟产生一位模拟用户
+     * 每1小时产生一位模拟用户
      */
-    @Scheduled(cron = "0 0/1 * * * ? ")
+    @Scheduled(cron = "0 0 0/1 * * ?")
     public void reWrite() {
         Person person = PersonMocker.newPerson();
-
         log.info("产生新用户 : {}", person);
-
         BackRemoteApi.postForPerson(person);
-
         CommunityConfigSupport.update();
     }
 
