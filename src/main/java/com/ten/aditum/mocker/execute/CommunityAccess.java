@@ -126,7 +126,7 @@ public class CommunityAccess {
         double fail = personAccessRandomFail.get(personnelId);
         // 随机失败概率=BASE+random，BASE可以被外部修改
         if (flag < BASE_RANDOM_FAIL + fail) {
-            log.info("模拟访问随机失败 : 设备={} 姓名={} 当前失败概率={} ",
+            log.warn("模拟访问随机失败 : 设备={} 姓名={} 当前失败概率={} ",
                     alias, personnelName, BASE_RANDOM_FAIL + fail);
             return;
         }
@@ -146,7 +146,7 @@ public class CommunityAccess {
             Long timeOut = personTimeOutRandom.get(personnelId);
             // 访问间隔过小
             if (subtract < timeOut) {
-                log.info("模拟访问时间过短 : 设备={} 姓名={} 倒计时={} ",
+                log.warn("模拟访问时间过短 : 设备={} 姓名={} 倒计时={} ",
                         alias, personnelName, TimeGenerator.getTimeFromSec((timeOut - subtract) / 1000));
                 return;
             }
@@ -165,7 +165,7 @@ public class CommunityAccess {
         if (current.compareTo(ILLEGAL_START) > 0 && ILLEGAL_STOP.compareTo(current) > 0) {
             // 拒绝访问：极大概率随机失败
             if (Math.random() > REJECT_FAILURE_PROBABILITY) {
-                log.info("模拟访问拒绝 : 设备={} 姓名={} 概率={} ",
+                log.warn("模拟访问拒绝 : 设备={} 姓名={} 概率={} ",
                         alias, personnelName, fail);
                 return;
             }
@@ -183,7 +183,7 @@ public class CommunityAccess {
         record.setVisiteStatus(type.num());
 
         // 生成日志
-        log.warn("模拟访问成功!!!设备={} 姓名={} 访问间隔={} 失败概率={} IMEI={} ID={}",
+        log.info("模拟访问成功!!!设备={} 姓名={} 访问间隔={} 失败概率={} IMEI={} ID={}",
                 alias, personnelName, TimeGenerator.getTimeFromSec(personTimeOutRandom.get(personnelId) / 1000),
                 personAccessRandomFail.get(personnelId), theDevice.getImei(), personnelId);
 
