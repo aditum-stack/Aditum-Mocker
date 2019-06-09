@@ -75,9 +75,8 @@ public class RecordProducer {
             CommunityAccess.BASE_RANDOM_FAIL = 0.3;
         }
 
-        // FIXME 临时热度
         boolean hotTemp = between(HOT_START_TEMP, HOT_STOP_TEMP);
-        if (hot1) {
+        if (hotTemp) {
             CommunityAccess.BASE_RANDOM_FAIL = 0.4;
         }
 
