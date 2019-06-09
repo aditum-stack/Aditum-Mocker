@@ -37,6 +37,12 @@ public class RecordProducer {
     private static final String HOT_STOP_1 = "09:00:00";
 
     /**
+     * FIXME 临时增加访问热度时间
+     */
+    private static final String HOT_START_TEMP = "09:00:00";
+    private static final String HOT_STOP_TEMP = "11:00:00";
+
+    /**
      * 热门访问时间 5-7 晚高峰
      */
     private static final String HOT_START_2 = "17:00:00";
@@ -67,6 +73,12 @@ public class RecordProducer {
         boolean hot1 = between(HOT_START_1, HOT_STOP_1);
         if (hot1) {
             CommunityAccess.BASE_RANDOM_FAIL = 0.3;
+        }
+
+        // FIXME 临时热度
+        boolean hotTemp = between(HOT_START_TEMP, HOT_STOP_TEMP);
+        if (hot1) {
+            CommunityAccess.BASE_RANDOM_FAIL = 0.4;
         }
 
         // 晚高峰
